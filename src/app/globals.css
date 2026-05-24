@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* M3S design tokens — colours */
+  /* M3S design tokens — colours (CLAUDE.md §4.1) */
   --color-sand-50: #FBF7F0;
   --color-sand-100: #F5EDE0;
   --color-sand-200: #EADBC4;
+  --color-sand-300: #D9C3A3;
   --color-walnut-700: #5E4228;
   --color-espresso-800: #3E2C1C;
   --color-espresso-900: #241810;
+  --color-clay-500: #A8825A;
   --color-clay-600: #8A6640;
   --color-ochre-500: #C99A3F;
   --color-sage-200: #D7DECF;
@@ -15,19 +17,37 @@
   --color-terracotta-200: #ECCDBF;
   --color-terracotta-500: #B86B4B;
   --color-paper: #FFFDF8;
+  --color-ink: #1C140E;
 
-  /* M3S typography */
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: Inter, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  /* Fonts — values reference the next/font CSS vars set in layout.tsx */
+  --font-display: var(--font-instrument-serif), "Cormorant Garamond", Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  /* M3S shadows */
-  --shadow-m3s-2: 0 6px 20px -8px rgba(62, 44, 28, 0.18);
-  --shadow-m3s-3: 0 12px 36px -12px rgba(62, 44, 28, 0.24);
+  /* M3S shadows — espresso-tinted (CLAUDE.md §9.2; never grey/black) */
+  --shadow-sh-1: 0 1px 2px rgba(62, 44, 28, 0.06);
+  --shadow-sh-2: 0 6px 20px -8px rgba(62, 44, 28, 0.18);
+  --shadow-sh-3: 0 20px 50px -20px rgba(62, 44, 28, 0.35);
+
+  /* M3S radii — all CTAs are pill (CLAUDE.md §4.3) */
+  --radius-pill: 9999px;
+  --radius-m3s-sm: 6px;
+  --radius-m3s-md: 10px;
+  --radius-m3s-lg: 16px;
+  --radius-m3s-xl: 24px;
+
+  /* M3S borders */
+  --color-hairline: rgba(62, 44, 28, 0.12);
+  --color-hairline-strong: rgba(62, 44, 28, 0.22);
 }
+
+html { overflow-x: clip; }
 
 body {
   background: var(--color-sand-50);
   color: var(--color-espresso-900);
   font-family: var(--font-body);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
