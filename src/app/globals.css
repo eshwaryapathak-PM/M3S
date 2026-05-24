@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* M3S design tokens — colours */
+  --color-sand-50: #FBF7F0;
+  --color-sand-100: #F5EDE0;
+  --color-sand-200: #EADBC4;
+  --color-walnut-700: #5E4228;
+  --color-espresso-800: #3E2C1C;
+  --color-espresso-900: #241810;
+  --color-clay-600: #8A6640;
+  --color-ochre-500: #C99A3F;
+  --color-sage-200: #D7DECF;
+  --color-sage-500: #7B8B6F;
+  --color-terracotta-200: #ECCDBF;
+  --color-terracotta-500: #B86B4B;
+  --color-paper: #FFFDF8;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* M3S typography */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* M3S shadows */
+  --shadow-m3s-2: 0 6px 20px -8px rgba(62, 44, 28, 0.18);
+  --shadow-m3s-3: 0 12px 36px -12px rgba(62, 44, 28, 0.24);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-sand-50);
+  color: var(--color-espresso-900);
+  font-family: var(--font-body);
 }
