@@ -1,6 +1,8 @@
+// Placeholder home — replaced by the real Hero in Phase 1b.
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-sand-50 flex items-center justify-center px-6">
+    <div className="flex items-center justify-center px-6 py-32 bg-sand-50">
       <div className="text-center">
         <p className="font-mono text-[10px] tracking-[1.5px] uppercase text-clay-600 mb-2">
           ● M3S — Coming Soon
@@ -13,6 +15,6 @@ export default function Home() {
           Site under construction.
         </p>
       </div>
-    </main>
+    </div>
   );
 }

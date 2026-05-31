@@ -1,7 +1,7 @@
-// Icon: SVG registry. Seed with two universal icons; each phase adds what it needs
+// Icon: SVG registry. Seeded sparsely; each phase adds what it needs
 // (don't preload icons that aren't yet used — keeps the bundle lean).
 
-const ICONS: Record<string, React.ReactNode> = {
+const ICONS = {
   arrow: (
     <path
       d="M5 12h14M13 5l7 7-7 7"
@@ -12,7 +12,13 @@ const ICONS: Record<string, React.ReactNode> = {
   check: (
     <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
   ),
-};
+  menu: (
+    <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+  ),
+  close: (
+    <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+  ),
+} as const;
 
 export type IconName = keyof typeof ICONS;
 
@@ -29,8 +35,6 @@ export function Icon({
   strokeWidth = 1.5,
   className = '',
 }: IconProps) {
-  const icon = ICONS[name];
-  if (!icon) return null;
   return (
     <svg
       width={size}
@@ -42,7 +46,7 @@ export function Icon({
       className={className}
       aria-hidden="true"
     >
-      {icon}
+      {ICONS[name]}
     </svg>
   );
 }

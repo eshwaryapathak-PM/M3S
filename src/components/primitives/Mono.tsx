@@ -4,6 +4,8 @@
 interface MonoProps {
   children: React.ReactNode;
   size?: 'xs' | 'sm' | 'md';
+  /** Token-pure colour, or 'inherit' to delegate to a parent (e.g. <Link> with hover states). */
+  color?: 'clay' | 'walnut' | 'sand' | 'inherit';
   className?: string;
 }
 
@@ -13,10 +15,22 @@ const sizeClasses: Record<NonNullable<MonoProps['size']>, string> = {
   md: 'text-[11px]',
 };
 
-export function Mono({ children, size = 'sm', className = '' }: MonoProps) {
+const colorClasses: Record<NonNullable<MonoProps['color']>, string> = {
+  clay: 'text-clay-600',
+  walnut: 'text-walnut-700',
+  sand: 'text-sand-200',
+  inherit: '',
+};
+
+export function Mono({
+  children,
+  size = 'sm',
+  color = 'clay',
+  className = '',
+}: MonoProps) {
   return (
     <span
-      className={`font-mono uppercase tracking-[1.5px] font-medium text-clay-600 ${sizeClasses[size]} ${className}`}
+      className={`font-mono uppercase tracking-[1.5px] font-medium ${sizeClasses[size]} ${colorClasses[color]} ${className}`}
     >
       {children}
     </span>

@@ -3,7 +3,10 @@
 //   ghost   — transparent, hairline border (secondary)
 //   terra   — terracotta bg, RESERVED for destructive / owner-only admin actions (§4.3)
 //
-// Every interactive state defined per §9.6.
+// When `href` is set, renders as a Next.js <Link> instead of <button> so callers don't
+// nest <a>/<button> (invalid HTML). Every interactive state per §9.6.
+
+import Link from 'next/link';
 
 interface BtnProps {
   children: React.ReactNode;
@@ -12,6 +15,8 @@ interface BtnProps {
   onClick?: () => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  /** When set, renders as a Next.js <Link>. `disabled`/`type` are ignored in this mode. */
+  href?: string;
   className?: string;
 }
 
@@ -37,23 +42,34 @@ export function Btn({
   onClick,
   disabled,
   type = 'button',
+  href,
   className = '',
 }: BtnProps) {
+  const classes = [
+    'inline-flex items-center justify-center rounded-pill font-medium',
+    // Only transition transform + colors per CLAUDE.md §9.5 (never `transition-all`).
+    'transition-[background-color,color,transform] duration-150',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ochre-500 focus-visible:ring-offset-2',
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:active:translate-y-0',
+    variantClasses[variant],
+    sizeClasses[size],
+    className,
+  ].join(' ');
+
+  if (href) {
+    return (
+      <Link href={href} className={classes} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={[
-        'inline-flex items-center justify-center rounded-pill font-medium',
-        // Only transition transform + colors per CLAUDE.md §9.5 (never `transition-all`).
-        'transition-[background-color,color,transform] duration-150',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ochre-500 focus-visible:ring-offset-2',
-        'disabled:opacity-40 disabled:cursor-not-allowed disabled:active:translate-y-0',
-        variantClasses[variant],
-        sizeClasses[size],
-        className,
-      ].join(' ')}
+      className={classes}
     >
       {children}
     </button>
